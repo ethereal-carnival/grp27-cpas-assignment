@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+
+  app:
+    image: 'hospitals-management:latest'
+    build:
+      context: .
+    restart: always
+    ports:
+      - "8080:8080"
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+#    ports:
+#      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=hms
+      - POSTGRES_USER=hmsuser
+      - POSTGRES_PASSWORD=hmspwd
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
