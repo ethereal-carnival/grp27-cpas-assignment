@@ -1,6 +1,6 @@
 package com.bitswilp.cpad.statistics.service;
 
-import com.bitswilp.cpad.businessconstants.StatisticsResponse;
+import com.bitswilp.cpad.commonlibrary.communicationmodels.Statistics;
 import com.bitswilp.cpad.statistics.persistence.StatisticsDBEntity;
 import com.bitswilp.cpad.statistics.persistence.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class StatisticsService {
         statisticsRepository.save(statisticsDBEntity);
     }
 
-    public StatisticsResponse getStats(String hospitalId) {
+    public Statistics getStats(String hospitalId) {
         List<StatisticsDBEntity> allStatisticsSubmittedByHospital = statisticsRepository.findAllByHospitalId(hospitalId);
         return statsAccumulator.accumulateCount(allStatisticsSubmittedByHospital);
     }

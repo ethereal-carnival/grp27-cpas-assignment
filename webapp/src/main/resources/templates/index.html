@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- bootstrap  -->
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+    />
+
+    <!-- font-awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+            integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+            crossorigin="anonymous"
+    />
+    <title>Hospital Help System</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Group 27 - Cross Platform Application Development Assignment</a>
+    </div>
+</nav>
+<br/>
+<br/>
+<br/><br/><br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://www.theaxisgroup.com/wp-content/uploads/2020/06/gotham2.jpg" class="card-img-top"
+                     alt="..." style="height: 200px">
+                <div class="card-body">
+                    <h5 class="card-title">Statistics</h5>
+                    <p class="card-text">View the number of cases, deaths and recoveries in hospitals.</p>
+                </div>
+                <div class="input-group">
+                    <form action="/stats" method="post">
+                        <select class="custom-select" id="hospitalNameForStats" th:each="hospital : ${hospitalsList}">
+                            <option value=th:text="${hospital}"></option>
+                        </select>
+                        <div class="input-group-append">
+                            <input type="submit" class="btn btn-primary" role="button">Search</input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://c.ndtvimg.com/2020-07/02hsvf2_delhi-covid-hospital-650_625x300_05_July_20.jpg"
+                     class="card-img-top" alt="..." style="height: 200px">
+                <div class="card-body">
+                    <h5 class="card-title">Beds</h5>
+                    <p class="card-text">Number of regular beds, ICU beds available in hospitals.</p>
+                </div>
+                <div class="input-group">
+                    <form action="/beds" method="post">
+                        <select class="custom-select" id="hospitalNameForBeds" th:each="hospital : ${hospitalsList}">
+                            <option value=th:text="${hospital}"></option>
+                        </select>
+                        <div class="input-group-append">
+                            <input type="submit" class="btn btn-primary" role="button">Search</input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://assets-global.website-files.com/6050a76fa6a633d5d54ae714/609147088669907f652110b0_report-an-issue(about-maps).jpeg"
+                     style="height: 200px" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Nearby Hospitals</h5>
+                    <p class="card-text">Find a list of hospitals near you with beds available for admission.</p>
+                    <a href="/nearby" class="btn btn-primary" role="button">Search</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

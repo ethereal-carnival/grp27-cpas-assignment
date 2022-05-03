@@ -1,6 +1,6 @@
 package com.bitswilp.cpad.statistics.service;
 
-import com.bitswilp.cpad.businessconstants.StatisticsResponse;
+import com.bitswilp.cpad.commonlibrary.communicationmodels.Statistics;
 import com.bitswilp.cpad.statistics.persistence.StatisticsDBEntity;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class StatsAccumulator {
 
-    public StatisticsResponse accumulateCount(List<StatisticsDBEntity> allByHospitalId) {
+    public Statistics accumulateCount(List<StatisticsDBEntity> allByHospitalId) {
         AtomicInteger activeCases = new AtomicInteger();
         AtomicInteger totalCases = new AtomicInteger();
         AtomicInteger numRecovered = new AtomicInteger();
@@ -19,6 +19,6 @@ public class StatsAccumulator {
             totalCases.addAndGet(statisticsDBEntity.getTotalCases());
             numRecovered.addAndGet(statisticsDBEntity.getNumRecovered());
         });
-        return new StatisticsResponse(activeCases.get(), totalCases.get(), numRecovered.get());
+        return new Statistics(activeCases.get(), totalCases.get(), numRecovered.get());
     }
 }

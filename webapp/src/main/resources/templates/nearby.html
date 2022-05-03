@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- bootstrap  -->
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+    />
+
+    <!-- font-awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+            integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+            crossorigin="anonymous"
+    />
+    <title>Nearby</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Group 27 - Cross Platform Application Development Assignment</a>
+    </div>
+</nav>
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Hospital</th>
+            <th scope="col">Address</th>
+            <th scope="col">Distance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="nearbyHopital : ${nearbyHospitals}">
+            <td th:text="${nearbyHospital.getName()}">Gayatri Nawal Hospital</td>
+            <td th:text="${nearbyHospital.getAddress()}">Gayatri Nawal Hospital</td>
+            <td th:text="${nearbyHospital.getGpsCoordinates()}">Gayatri Nawal Hospital</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -37,9 +37,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.bitwilp.cpad</groupId>
-            <artifactId>businessconstants</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.bitswilp.cpad</groupId>
+            <artifactId>commonlibrary</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

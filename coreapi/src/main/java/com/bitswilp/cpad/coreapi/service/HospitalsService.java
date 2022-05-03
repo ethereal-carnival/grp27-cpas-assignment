@@ -1,31 +1,38 @@
 package com.bitswilp.cpad.coreapi.service;
 
+import com.bitswilp.cpad.commonlibrary.communicationmodels.BedsAvailability;
+import com.bitswilp.cpad.commonlibrary.communicationmodels.Statistics;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import static com.bitswilp.cpad.commonlibrary.constants.URLs.BED_AVAILABILITY;
+import static com.bitswilp.cpad.commonlibrary.constants.URLs.NEARBY_HOSPITALS;
+import static com.bitswilp.cpad.commonlibrary.constants.URLs.STATS;
+import static com.bitswilp.cpad.commonlibrary.constants.URLs.URL_COMPONENT_GET;
+import static com.bitswilp.cpad.commonlibrary.constants.URLs.getBedsAvailabilityUrl;
+import static com.bitswilp.cpad.commonlibrary.constants.URLs.getNearbyHospitalsUrl;
+import static com.bitswilp.cpad.commonlibrary.constants.URLs.getStatsUrl;
 
 @Service
 public class HospitalsService {
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private static final String STATISTICS_URL = "http://localhost:8081/get-stats";
-    private static final String BED_AVAILABILITY_QUERY_SYSTEM_URL = "http://localhost:8082/get-availability";
-    private static final String NEARYBY_HOSPITAL_FINDER_SYSTEM_URL = "http://localhost:8083/get-nearby";
 
-    public String getStats(String hospital) {
-        String url = STATISTICS_URL + "/" + hospital;
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+    public Statistics getStats(String hospitalId) {
+        String url = getStatsUrl() + URL_COMPONENT_GET + STATS;
+        ResponseEntity<Statistics> response = restTemplate.postForEntity(url, hospitalId, Statistics.class);
         return response.getBody();
     }
 
-    public String getBedsAvailability(String hospital) {
-        String url = BED_AVAILABILITY_QUERY_SYSTEM_URL + "/" + hospital;
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+    public BedsAvailability getBedsAvailability(String hospitalId) {
+        String url = getBedsAvailabilityUrl() + URL_COMPONENT_GET + BED_AVAILABILITY;
+        ResponseEntity<BedsAvailability> response = restTemplate.postForEntity(url, hospitalId, BedsAvailability.class);
         return response.getBody();
     }
 
     public String getNearbyHospitals(String coordinates) {
-        String url = NEARYBY_HOSPITAL_FINDER_SYSTEM_URL + "/" + coordinates;
+        String url = getNearbyHospitalsUrl() + URL_COMPONENT_GET + NEARBY_HOSPITALS;
         ResponseEntity<String> response = restTemplate.postForEntity(url, coordinates, String.class);
         return response.getBody();
     }

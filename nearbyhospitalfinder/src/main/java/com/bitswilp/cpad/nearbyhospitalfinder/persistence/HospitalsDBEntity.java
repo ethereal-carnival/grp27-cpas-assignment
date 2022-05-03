@@ -1,7 +1,5 @@
 package com.bitswilp.cpad.nearbyhospitalfinder.persistence;
 
-import com.bitswilp.cpad.businessconstants.GPSCoordinates;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
